@@ -1,2 +1,5 @@
 DROP DATABASE IF EXISTS cars_db;
 CREATE DATABASE cars_db;
+
+DROP DATABASE IF EXISTS ecommerce_db;
+CREATE DATABASE ecommerce_db;
