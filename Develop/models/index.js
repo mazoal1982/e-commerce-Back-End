@@ -1,23 +1,25 @@
-const Driver = require('./Driver');
-const License = require('./License');
-const Car = require('./Car');
+const Product = require('./Product');
+const Tag = require('./Tag');
+const Category = require('./Category');
+const ProductTag = require('./ProductTag');
 
-Driver.hasOne(License, {
-  foreignKey: 'driver_id',
+Product.belongsTo(Category, {
+  foreignKey: 'category_id',
   onDelete: 'CASCADE',
 });
 
-License.belongsTo(Driver, {
-  foreignKey: 'driver_id',
+Category.hasMany(Product, {
+  foreignKey: 'category_id',
 });
 
-Driver.hasMany(Car, {
-  foreignKey: 'driver_id',
-  onDelete: 'CASCADE',
+Product.belongsToMany(Tag, {
+  through: ProductTag,
+  foreignKey: 'product_id',
 });
 
-Car.belongsTo(Driver, {
-  foreignKey: 'driver_id',
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  foreignKey: 'tag_id',
 });
 
-module.exports = { Driver, License, Car };
+module.exports = { Product, Tag, Category, ProductTag };
